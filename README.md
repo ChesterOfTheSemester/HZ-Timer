@@ -1,12 +1,12 @@
 # hz_timer.h
-Timer struct: Make sure a code segment is executed under a specified Hertz rate
+Make sure a code segment is executed under a specified Hertz rate
 
 ## Usage Example
 
 ```cpp
 
 #include <iostream>
-#include "hz_timer.h"
+#include "hz_timer.hh"
 
 int main()
 {
