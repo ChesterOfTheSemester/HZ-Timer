@@ -1,4 +1,4 @@
-# hz_timer.h
+# hz_timer.hh
 Make sure a code segment is executed under a specified Hertz rate
 
 ## Usage Example
