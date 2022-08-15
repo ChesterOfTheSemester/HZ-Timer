@@ -3,7 +3,7 @@
  * Make sure a code segment is executed under a specified Hertz rate
  * 
  * Author: Chester Abrahams
- * GitHub: https://github.com/ChesterOfTheSemester/hz_timer.h
+ * GitHub: https://github.com/ChesterOfTheSemester/hz_timer.hh
  */
 
 #ifndef HZ_TIMER
