@@ -1,5 +1,6 @@
 # hz_timer.hh
-Make sure a code segment is executed under a specified Hertz rate
+Make sure a code segment is executed under a specified Hertz rate.
+I still recommend using polling, but this is a way to ensure frequency without interrupting the IP.
 
 ## Usage Example
 
