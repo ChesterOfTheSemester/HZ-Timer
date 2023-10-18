@@ -13,29 +13,29 @@
 #include <vector>
 #include <unordered_map>
 
-class Timer
+class 
 {
 private:
-    std::unordered_map<int, std::vector<long long> > stack_lapsed;
-    std::unordered_map<int, double> threshold;
+    std::unordered_map<unsigned int, std::vector<unsigned int> > stack_lapsed;
+    std::unordered_map<unsigned int, double> threshold;
 
 public:
-    bool test(int hz, int uuid = 0, long long timespan = 1000)
+    bool test(unsigned int hz, unsigned int uuid = 0, unsigned int timespan = 1000)
     {
         // Precompute threshold if not available.
         if (threshold.find(uuid) == threshold.end())
             threshold[uuid] = static_cast<double>(timespan) / hz;
 
-        long long now = static_cast<long long>(std::time(NULL)) * 1000;
-        long long elapsed = now - (stack_lapsed[uuid].empty() ? 0 : stack_lapsed[uuid].back());
+        unsigned int now = static_cast<unsigned int>(std::time(NULL)) * 1000;
+        unsigned int elapsed = now - (stack_lapsed[uuid].empty() ? 0 : stack_lapsed[uuid].back());
 
         if (elapsed > threshold[uuid]) {
-            stack_lapsed[uuid].push_back(now - (elapsed % static_cast<long long>(threshold[uuid])));
+            stack_lapsed[uuid].push_back(now - (elapsed % static_cast<unsigned int>(threshold[uuid])));
             return true;
         }
 
         return false;
     }
-};
+} hz_timer;
 
 #endif
