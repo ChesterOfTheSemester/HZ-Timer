@@ -34,4 +34,4 @@ bool test (unsigned int hz, int uuid = 0, long long timespan = 1000)
 
 `long long timelapse` Time timelapse in millisecond format
 
-`@return bool` Returns true when the timer has triggered
+`@return bool` Returns TRUE when the timer has triggered
