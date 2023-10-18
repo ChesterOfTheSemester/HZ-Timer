@@ -26,7 +26,7 @@ int main()
 ## Parameters and return value
 A unique `uuid` for each segment is necessary for assigning timespans
 ```cpp
-bool test (unsigned int hz, unsigend int uuid = 0, unsigned timespan = 1000)
+bool test (unsigned int hz, int uuid = 0, long long timespan = 1000)
 ```
 `unsigned int hz` Is the frequency at which the timer must be true
 
