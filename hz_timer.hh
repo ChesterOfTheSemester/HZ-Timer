@@ -9,32 +9,33 @@
 #ifndef HZ_TIMER
 #define HZ_TIMER
 
-#include <sys/time.h>
-#include <stdlib.h>
+#include <iostream>
+#include <vector>
+#include <unordered_map>
 
-struct
+class Timer
 {
-    struct      timeval  tp;
-    unsigned    stack[0xFF],
-                stack_lapsed[0xFF];
+private:
+    std::unordered_map<int, std::vector<long long> > stack_lapsed;
+    std::unordered_map<int, double> threshold;
 
-    unsigned getMS() {
-        gettimeofday(&tp, NULL);
-        return tp.tv_sec * 1000 + tp.tv_usec / 1000;
-    }
-
-    bool test(unsigned hz, unsigned uuid=0, unsigned timespan=1000)
+public:
+    bool test(int hz, int uuid = 0, long long timespan = 1000)
     {
-        unsigned ms = getMS();
-        stack[uuid] = ms - stack_lapsed[uuid];
+        // Precompute threshold if not available.
+        if (threshold.find(uuid) == threshold.end())
+            threshold[uuid] = static_cast<double>(timespan) / hz;
 
-        if (stack[uuid] > timespan/hz) {
-            stack_lapsed[uuid] = ms - (stack[uuid] % (timespan/hz));
+        long long now = static_cast<long long>(std::time(NULL)) * 1000;
+        long long elapsed = now - (stack_lapsed[uuid].empty() ? 0 : stack_lapsed[uuid].back());
+
+        if (elapsed > threshold[uuid]) {
+            stack_lapsed[uuid].push_back(now - (elapsed % static_cast<long long>(threshold[uuid])));
             return true;
         }
 
         return false;
     }
-} timer;
+};
 
 #endif
