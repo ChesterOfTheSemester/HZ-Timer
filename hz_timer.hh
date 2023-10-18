@@ -1,5 +1,5 @@
 /**
- * HZ Timer
+ * HZ Timer 2.0
  * Make sure a code segment is executed under a specified Hertz rate
  * 
  * Author: Chester Abrahams
