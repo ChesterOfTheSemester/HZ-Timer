@@ -30,8 +30,8 @@ bool test (unsigned int hz, unsigend int uuid = 0, unsigned timespan = 1000)
 ```
 `unsigned int hz` Is the frequency at which the timer must be true
 
-`unsigned int uuid` A unique identifier is needed for each timer to store the timelapse value for comparisons
+`int uuid` A unique identifier is needed for each timer to store the timelapse value for comparisons
 
-`unsigned int timelapse` Time timelapse in millisecond format
+`long long timelapse` Time timelapse in millisecond format
 
 `@return bool` Returns true when the timer has triggered
