@@ -28,10 +28,10 @@ A unique `uuid` for each segment is necessary for assigning timespans
 ```cpp
 bool test (unsigned int hz, unsigend int uuid = 0, unsigned timespan = 1000)
 ```
-`unsigned int hz` is the frequency at which the timer must be true
+`unsigned int hz` Is the frequency at which the timer must be true
 
-`unsigned int uuid` a unique identifier is needed for each timer to store the timelapse value for comparisons
+`unsigned int uuid` A unique identifier is needed for each timer to store the timelapse value for comparisons
 
-`unsigned int timelapse` time timelapse in millisecond format
+`unsigned int timelapse` Time timelapse in millisecond format
 
 `@return bool` Returns true when the timer has triggered
