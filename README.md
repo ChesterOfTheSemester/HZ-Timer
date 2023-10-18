@@ -13,9 +13,9 @@ int main()
 {
   while (1)
   {
-    if (timer.test(1,  0x01, 150))  std::cout << "Every 150ms" << std::endl;
-    if (timer.test(1,  0x02, 700))  std::cout << "Every 700ms" << std::endl;
-    if (timer.test(60, 0x03, 1000)) std::cout << "60 Hz / 16.6ms" << std::endl;
+    if (hz_timer.test(1,  0x01, 150))  std::cout << "Every 150ms" << std::endl;
+    if (hz_timer.test(1,  0x02, 700))  std::cout << "Every 700ms" << std::endl;
+    if (hz_timer.test(60, 0x03, 1000)) std::cout << "60 Hz / 16.6ms" << std::endl;
   }
 
   return 0;
