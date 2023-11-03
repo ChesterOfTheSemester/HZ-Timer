@@ -10,29 +10,29 @@
 #define HZ_TIMER
 
 #include <iostream>
-#include <vector>
-#include <unordered_map>
+#include <map>
+#include <chrono>
 
-class {
-private:
-    std::unordered_map<int, std::vector<long long> > stack_lapsed;
-    std::unordered_map<int, double> threshold;
+struct {
+    std::map<int, std::pair<int, int>> data;
 
-public:
-    bool test(unsigned int hz, int uuid = 0, long long timespan = 1000)
-    {
-        // Precompute threshold if not available.
-        if (threshold.find(uuid) == threshold.end())
-            threshold[uuid] = static_cast<double>(timespan) / hz;
+    bool test(int hz, int uuid = 0, int timespan = 1000) {
+        const auto now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        const int threshold = timespan / hz;
 
-        // Get current time and elapsed
-        long long now = static_cast<long long>(std::time(NULL)) * 1000;
-        long long elapsed = now - (stack_lapsed[uuid].empty() ? 0 : stack_lapsed[uuid].back());
+        auto& entry = data[uuid];
 
-        // Compare and return
-        if (elapsed > threshold[uuid]) {
-            stack_lapsed[uuid].push_back(now - (elapsed % static_cast<long long>(threshold[uuid])));
-            return true;
+        if (entry.first == 0) {
+            entry.first = now;
+            entry.second = -1;
+        }
+
+        const int elapsed = now - entry.first;
+
+        if (elapsed > threshold) {
+            entry.first = now - (elapsed % threshold);
+            entry.second = (entry.second + 1) & 0xFFF;
+            return entry.second >= 1;
         }
 
         return false;
