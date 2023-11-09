@@ -20,7 +20,7 @@ struct {
         const auto now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         const int threshold = timespan / hz;
 
-        auto& entry = data[uuid];
+        auto &entry = data[uuid];
 
         if (entry.first == 0) {
             entry.first = now;
